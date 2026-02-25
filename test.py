@@ -1,1 +1,2 @@
-def hello(): print("AI rocks!")
+def hello(): print("Hello from Bengaluru!")
+  print("AI rocks!")
