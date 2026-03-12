@@ -1,4 +1,4 @@
 def hello(): print("Hello from Bengaluru!")
   print("AI rocks!")
 
-def
+def echo "print('testing AI reviewer')" >> test.py
