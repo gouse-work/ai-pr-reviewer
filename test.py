@@ -1,3 +1,3 @@
 def hello(): print("Hello from Bengaluru!")
   print("AI rocks!")
-  abc
+  printf("abc");
