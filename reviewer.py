@@ -117,4 +117,4 @@ if __name__ == "__main__":
         run_review(repo, int(pr_number))
     else:
         # Running locally for testing
-        run_review("YOUR_USERNAME/ai-pr-reviewer", 1)
+        run_review("YOUR_USERNAME/ai-pr-reviewer", 3)
