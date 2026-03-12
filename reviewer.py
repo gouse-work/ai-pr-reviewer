@@ -109,4 +109,4 @@ def run_review(repo, pr_number):
     post_pr_comment(repo, pr_number, token, comment)
     print("✅ Review posted!")
 
-run_review("gouse-work/ai-pr-reviewer",1)
+run_review("gouse-work/ai-pr-reviewer",2)
