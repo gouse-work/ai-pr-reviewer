@@ -1,0 +1,42 @@
+# This file tells GitHub WHEN and HOW to run your AI reviewer
+name: AI PR Reviewer
+
+# WHEN to run: whenever a PR is opened or updated
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest  # Use a fresh Linux machine
+    
+    # Give the bot permission to post comments
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      # Step 1: Download your code onto the machine
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Install Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Step 3: Install your libraries
+      - name: Install dependencies
+        run: pip install langchain langgraph langchain-groq requests python-dotenv
+
+      # Step 4: Run your reviewer script
+      - name: Run AI Reviewer
+        run: python reviewer.py
+        env:
+          # These come from GitHub Secrets (set up next step!)
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # These are auto-set by GitHub Actions
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}

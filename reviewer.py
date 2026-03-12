@@ -107,4 +107,14 @@ def run_review(repo, pr_number):
     post_pr_comment(repo, pr_number, token, comment)
     print("✅ Review posted!")
 
-run_review("gouse-work/ai-pr-reviewer", 2)
+if __name__ == "__main__":
+    # In GitHub Actions, these are set automatically
+    repo = os.getenv("REPO")           # e.g. "alice/ai-pr-reviewer"
+    pr_number = os.getenv("PR_NUMBER")  # e.g. "42"
+    
+    if repo and pr_number:
+        # Running in GitHub Actions
+        run_review(repo, int(pr_number))
+    else:
+        # Running locally for testing
+        run_review("YOUR_USERNAME/ai-pr-reviewer", 1)
